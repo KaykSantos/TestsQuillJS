@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Include stylesheet -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+</head>
+<body>
+
+<!-- Create the editor container -->
+<div id="editor">
+  <h2>Hello World!</h2>
+  <p>Digite seu texto aqui</p>
+  <p><br></p>
+</div>
+<br>
+<button onclick="getCode('ql-editor')">Cadastrar</button>
+
+
+<fieldset>
+    <h3>Texto digitado:</h3>
+    <div id="msg" class="ql-editor"></div> 
+</fieldset>
+
+
+<script>
+    var toolbarOptions = [
+    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+    ['blockquote', 'code-block'],
+
+    ['link', 'image', 'video'],  
+
+    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+    [{ 'direction': 'rtl' }],                         // text direction
+
+    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    [{ 'font': [] }],
+    [{ 'align': [] }],
+
+    ['clean']                                         // remove formatting button
+    ];
+
+    var quill = new Quill('#editor', {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        theme: 'snow'
+    });
+
+
+//     var quill = new Quill('#editor', {
+//   theme: 'snow',
+//   modules: {
+//     toolbar: [
+//       ['bold', 'italic', 'underline', 'strike'],            // Grupo 1
+//       ['align'],                                            // Grupo 2 (alinhamento de texto)
+//       ['link', 'image', 'video'],                           // Grupo 3
+//       [{ 'list': 'ordered'}, { 'list': 'bullet' }],        // Grupo 4
+//       [{ 'script': 'sub'}, { 'script': 'super' }],         // Grupo 5
+//       ['blockquote', 'code-block'],                        // Grupo 6
+//       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],           // Grupo 7
+//       [{ 'color': [] }, { 'background': [] }],             // Grupo 8
+//       ['clean']                                            // Grupo 9
+//     ],
+//     // Adicionando opções de alinhamento
+//     syntax: true,
+//     clipboard: {
+//       matchVisual: false,
+//     }
+//   }
+// });
+
+
+
+    function getCode(className){
+        const elements = document.getElementsByClassName(className);
+        const msg = document.getElementById('msg');
+
+        for (let i = 0; i < elements.length; i++) {
+            const codeElement = elements[i].innerHTML;
+
+            console.log(codeElement);
+
+            msg.innerHTML = codeElement;
+        }
+    }
+</script>
+</body>
+</html>
